@@ -114,7 +114,7 @@ export default function Home() {
     const [mean, setMean] = React.useState(0);
     const [stops, setStops] = React.useState(50);
 
-    const [gradient, weights] = generateGradient(startColor, stopColor, stops, mean, stdDev);
+    const [gradient] = generateGradient(startColor, stopColor, stops, mean, stdDev);
 
     return (
         <main className={'flex min-h-screen flex-col items-center justify-between p-24'}>
@@ -160,7 +160,7 @@ export default function Home() {
                     height: '100cqw',
                 }}>
                     <div
-                        className={'absolute left-[5%] top-[10px] h-[150px] max-h-[150px] w-[90%] overflow-y-auto border-none bg-none p-5 text-sm tracking-tighter text-white text-white/50 shadow-none'}>
+                        className={'absolute left-[5%] top-[10px] h-[150px] max-h-[150px] w-[90%] overflow-y-auto border-none bg-none p-5 text-sm tracking-tighter text-white/50 shadow-none'}>
                         {gradient}
                     </div>
                 </div>
