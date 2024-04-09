@@ -1,113 +1,171 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState } from 'react';
+
+import { GradientPicker } from '@/components/GradientPicker/GradientPicker';
+import { GradientSlider } from '@/components/GradientSlider/GradientSlider';
+import styles from '@/styles/Index.module.scss';
+
+const pi = 3.14159;
+const e = 2.718;
+
+function hex2rgba(color1: string) {
+    const v = color1.match(/\w\w/g);
+
+    if (!v) {
+        throw new Error('Invalid color');
+    }
+
+    return v.map(hex => parseInt(hex, 16));
+}
+
+function d2h(d: number) {
+    return d.toString(16);
+}
+
+const mix = function (color_1: string, color_2: string, weight: number) {
+
+    let color = '#';
+
+    const rgba1 = hex2rgba(color_1);
+    const rgba2 = hex2rgba(color_2);
+
+    for (let i = 0; i < 3; i++) { // loop through each of the 3 hex pairs—red, green, and blue
+        const v1 = rgba1[i];
+        const v2 = rgba2[i];
+
+        let val = d2h(Math.floor(v2 + (v1 - v2) * (weight / 100.0)));
+
+        while (val.length < 2) {
+            val = '0' + val;
+        } // prepend a '0' if val results in a single digit
+
+        color += val; // concatenate val to our new color string
+    }
+
+    return color; // PROFIT!
+};
+
+function gaussian(x: number, mean: number, stddev: number) {
+    // Calculate the factor
+    const factor = 1 / (stddev * Math.sqrt(2 * pi));
+
+    // Calculate the exponent
+    const exponent = -0.5 * Math.pow((x - mean) / stddev, 2);
+
+    // Return the Gaussian value
+    return factor * Math.pow(e, exponent);
+}
+
+function generateGradient(startColor: string, endColor: string, stops: number, mean: number, stddev: number): [string, number[]] {
+    // 1. Calculate weights based on Gaussian curve
+    let weights = [] as number[];
+    for (let i = 0; i < stops; i++) {
+        const x = i / stops;
+        const weight = gaussian(x, mean, stddev);
+        weights.push(weight);
+    }
+
+    // 2. Calculate scaling factor to fit weights within 0 to 100 (range required by mix)
+    const maxWeight = Math.max(...weights);
+    const scaleFactor = 100 / maxWeight;
+
+    // 3. Calculate next color based on weights
+    let gradient = '';
+    let i = 0;
+
+    weights.forEach(weight => {
+        // Scale the weight to fit within 0 to 100
+        const scaledWeight = weight * scaleFactor;
+
+        // Calculate the current color, round scaleWeight to 2 decimal places
+        const currentColor = mix(startColor, endColor, scaledWeight);
+
+        // Add the stop to the gradient
+        if (i === 0) {
+            gradient += currentColor + ' 0%';
+        }
+        else {
+            const percent = (i / stops) * 100;
+            const percentRounded = Math.round(percent * 100) / 100;
+            gradient += `, ${currentColor} ${percentRounded}%`;
+        }
+
+        // Increment the stop
+        i++;
+    });
+
+    // 4. Output the gradient
+    return [`radial-gradient(${gradient})`, weights];
+}
+
+const stdDevMin = 0;
+const stdDevMax = 1;
+
+const defaultStopColor = '#0e1111';
+const defaultStartColor = '#a05151';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const [startColor, setStartColor] = useState(defaultStartColor);
+    const [stopColor, setStopColor] = useState(defaultStopColor);
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    const [stdDev, setStdDev] = React.useState(0.20);
+    const [mean, setMean] = React.useState(0);
+    const [stops, setStops] = React.useState(50);
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+    const [gradient, weights] = generateGradient(startColor, stopColor, stops, mean, stdDev);
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+    return (
+        <main className={'flex min-h-screen flex-col items-center justify-between p-24'}>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+            <div className={styles.container}>
+                <div
+                    className={'m-3 text-center font-mono text-2xl tracking-tight'}>{'Smooth radial gradient generator'}</div>
+                <div className={'p-8'}>
+                    <GradientSlider
+                        title={`Standard deviation: ${stdDev}`}
+                        min={stdDevMin}
+                        max={stdDevMax}
+                        defaultValue={0.2}
+                        onValueChange={setStdDev}
+                        onReset={() => setStdDev(0.2)}/>
+                    <GradientSlider
+                        title={`Mean: ${mean}`}
+                        min={-1}
+                        max={1}
+                        defaultValue={0}
+                        onValueChange={setMean}
+                        onReset={() => setMean(0)}/>
+                    <GradientSlider
+                        title={`Stops: ${stops}`}
+                        min={1}
+                        max={200}
+                        defaultValue={50}
+                        onValueChange={setStops}
+                        onReset={() => setStops(50)}/>
+                    <div className={'flex flex-col items-center justify-center gap-4 p-5 md:flex-row'}>
+                        <div>{'Start color: '}</div>
+                        <GradientPicker background={startColor} setBackground={setStartColor}/>
+                        <div>{'Stop color: '}</div>
+                        <GradientPicker background={stopColor} setBackground={setStopColor}/>
+                    </div>
+                </div>
+
+                <div style={{
+                    position: 'relative',
+                    mixBlendMode: 'lighten',
+                    backgroundImage: gradient,
+                    width: '100cqw',
+                    height: '100cqw',
+                }}>
+                    <div
+                        className={'absolute left-[5%] top-[10px] h-[150px] max-h-[150px] w-[90%] overflow-y-auto border-none bg-none p-5 text-sm tracking-tighter text-white text-white/50 shadow-none'}>
+                        {gradient}
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    );
 }

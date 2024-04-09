@@ -1,0 +1,37 @@
+.indexPage {
+  display: grid;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  container-name: mycontainer;
+  container-type: inline-size;
+  width: 1200px;
+}
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+.circle {
+  background-image: radial-gradient(#2a384c 0%, #29374a 5%, #273345 10%, #232e3e 15%, #1f2935 20%, #1b232c 25%, #171e24 30%, #14191e 35%, #121619 40%, #101416 45%, #0f1314 50%, #0f1212 55%, #0e1112 60%, #0e1111 65%, #0e1111 70%, #0e1111 75%, #0e1111 80%, #0e1111 85%, #0e1111 90%, #0e1111 95%);
+  mix-blend-mode: lighten;
+  height: 80rem;
+  width: 80rem;
+}
+
+.circle2 {
+  background: radial-gradient(circle at center, rgb(42, 56, 76) 0, #0e1111 50%) no-repeat;
+  height: 80rem;
+  width: 80rem;
+}
+
+.circle3 {
+  background: radial-gradient(circle at center, rgba(55, 74, 102, 0.6) 0, rgba(0, 0, 0, 0) 40%) no-repeat;
+  height: 80rem;
+  width: 80rem;
+}
+
+/*# sourceMappingURL=Index.module.css.map */
