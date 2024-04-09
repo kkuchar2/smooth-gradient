@@ -1,6 +1,6 @@
-# Smooth Radial Gradient Generator
+# Smooth Gradient Generator
 
-This React application enables you to generate smooth radial gradients with customizable Gaussian distribution.
+This React application enables you to generate smooth gradients with customizable Gaussian distribution.
 
 ## Features
 

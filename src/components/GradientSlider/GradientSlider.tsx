@@ -20,7 +20,7 @@ export const GradientSlider = (props: GradientSliderProps) => {
     return <div>
         <div className={'flex items-center justify-between p-3'}>
             <div className={'font-mono'}>{title}</div>
-            <Button variant={'outline'} onClick={onReset}>
+            <Button variant={'outline'} className={'ml-4'} onClick={onReset}>
                 {'Reset'}
             </Button>
         </div>
