@@ -7,6 +7,7 @@ type GradientSliderProps = {
     title: string;
     min: number;
     max: number;
+    step: number;
     defaultValue: number;
     onValueChange: (value: number) => void;
     onReset: () => void;
@@ -14,7 +15,7 @@ type GradientSliderProps = {
 
 export const GradientSlider = (props: GradientSliderProps) => {
 
-    const { title, min, max, defaultValue, onValueChange, onReset } = props;
+    const { title, min, max, step, defaultValue, onValueChange, onReset } = props;
 
     return <div>
         <div className={'flex items-center justify-between p-3'}>
@@ -25,7 +26,7 @@ export const GradientSlider = (props: GradientSliderProps) => {
         </div>
         <div className={'flex items-center justify-center gap-3 p-3'}>
             <div className={'font-mono'}>{min}</div>
-            <Slider defaultValue={[defaultValue]} min={min} max={max} step={0.01}
+            <Slider defaultValue={[defaultValue]} min={min} max={max} step={step}
                 onValueChange={values => onValueChange(values[0])}
                 className={'w-full'}/>
             <div className={'font-mono'}>{max}</div>

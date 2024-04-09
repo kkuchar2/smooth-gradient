@@ -128,12 +128,14 @@ export default function Home() {
                         min={stdDevMin}
                         max={stdDevMax}
                         defaultValue={0.2}
+                        step={0.01}
                         onValueChange={setStdDev}
                         onReset={() => setStdDev(0.2)}/>
                     <GradientSlider
                         title={`Mean: ${mean}`}
                         min={-1}
                         max={1}
+                        step={0.01}
                         defaultValue={0}
                         onValueChange={setMean}
                         onReset={() => setMean(0)}/>
@@ -141,6 +143,7 @@ export default function Home() {
                         title={`Stops: ${stops}`}
                         min={1}
                         max={200}
+                        step={1}
                         defaultValue={50}
                         onValueChange={setStops}
                         onReset={() => setStops(50)}/>
