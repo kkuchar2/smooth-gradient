@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-import { GradientPicker } from '@/components/GradientPicker/GradientPicker';
+import { ColorPicker } from '@/components/ColorPicker/ColorPicker';
 import { GradientSlider } from '@/components/GradientSlider/GradientSlider';
 import styles from '@/styles/Index.module.scss';
 
@@ -146,9 +146,9 @@ export default function Home() {
                         onReset={() => setStops(50)}/>
                     <div className={'flex flex-col items-center justify-center gap-4 p-5 md:flex-row'}>
                         <div>{'Start color: '}</div>
-                        <GradientPicker background={startColor} setBackground={setStartColor}/>
+                        <ColorPicker color={startColor} setColor={setStartColor}/>
                         <div>{'Stop color: '}</div>
-                        <GradientPicker background={stopColor} setBackground={setStopColor}/>
+                        <ColorPicker color={stopColor} setColor={setStopColor}/>
                     </div>
                 </div>
 
