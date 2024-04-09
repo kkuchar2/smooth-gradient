@@ -16,6 +16,7 @@ type GradientPickerProps = {
 };
 
 const solids = [
+    '#000000',
     '#0e1111',
     '#a05151',
     '#E2E2E2',
@@ -71,6 +72,10 @@ export function ColorPicker(props: GradientPickerProps) {
         setInputValue(color);
     }, [color]);
 
+    useEffect(() => {
+        setColor(localColor);
+    }, [popoverOpen, localColor, setColor]);
+
     return (
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
             <PopoverTrigger asChild>
@@ -85,7 +90,7 @@ export function ColorPicker(props: GradientPickerProps) {
                     <div className={'flex w-full items-center gap-3'}>
                         {color ? (
                             <div
-                                className={'size-8 rounded !bg-cover !bg-center transition-all'}
+                                className={'size-8 rounded !bg-cover !bg-center'}
                                 style={{
                                     background: localColor,
                                     border: '1px solid #ffffff66',
