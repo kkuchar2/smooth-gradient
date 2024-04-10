@@ -36,7 +36,7 @@
     }
 
     .dark {
-        --background: hsl(0, 0%, 0%);
+        --background: #14151A;
         --foreground: hsl(210, 40%, 98%);
 
         --card: hsl(222.2, 84%, 4.9%);

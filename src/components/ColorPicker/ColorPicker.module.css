@@ -1,0 +1,17 @@
+.small :global(.react-colorful) {
+  width: 100%;
+  border-radius: 0;
+}
+
+.small :global(.react-colorful__saturation) {
+  border-radius: 0;
+}
+
+.small :global(.react-colorful__hue) {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+/*# sourceMappingURL=ColorPicker.module.css.map */

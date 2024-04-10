@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { MoveLeft, MoveRight } from 'lucide-react';
+import { MoveRight } from 'lucide-react';
 
 import { ColorPicker } from '@/components/ColorPicker/ColorPicker';
 import { GradientSlider } from '@/components/GradientSlider/GradientSlider';
@@ -106,7 +106,7 @@ function generateGradient(startColor: string, endColor: string, stops: number, m
 const stdDevMin = 0;
 const stdDevMax = 1;
 
-const defaultStopColor = '#000000';
+const defaultStopColor = '#14151A';
 const defaultStartColor = '#a05151';
 
 export default function Home() {
@@ -136,9 +136,6 @@ export default function Home() {
         setDirection(direction === 'to right' ? 'to left' : 'to right');
     };
 
-    console.log('startColor', startColor);
-    console.log('stopColor', stopColor);
-
     return (
         <main className={'flex min-h-screen flex-col items-center justify-between p-24'}>
 
@@ -149,13 +146,8 @@ export default function Home() {
                         <div className={'flex w-[350px] flex-col'}>
                             <div className={'flex items-center gap-3 pb-6'}>
                                 <ColorPicker color={startColor} setColor={setStartColor}/>
-                                {direction === 'to right' ? (
-                                    <MoveRight className={'size-6 cursor-pointer text-white'}
-                                        onClick={onDirectionClick}/>
-                                ) : (
-                                    <MoveLeft className={'size-6 cursor-pointer text-white'}
-                                        onClick={onDirectionClick}/>
-                                )}
+                                <MoveRight className={'size-6 cursor-pointer text-white'}
+                                    onClick={onDirectionClick}/>
                                 <ColorPicker color={stopColor} setColor={setStopColor}/>
                             </div>
                             <GradientSlider
