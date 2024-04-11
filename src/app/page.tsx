@@ -124,11 +124,16 @@ export default function Home() {
     const [backgroundRepeatEnabled, setBackgroundRepeatEnabled] = React.useState(true);
     const [direction, setDirection] = React.useState('to right');
     const [opacity, setOpacity] = React.useState(1);
+    const [enableDither, setEnableDither] = React.useState(true);
 
     const [gradient] = generateGradient(startColor, stopColor, stops, mean, stdDev);
 
     const onCheckedChange = (checked: CheckedState) => {
         setBackgroundRepeatEnabled(typeof checked === 'boolean' ? checked : false);
+    };
+
+    const onEnableDitherChange = (checked: CheckedState) => {
+        setEnableDither(typeof checked === 'boolean' ? checked : false);
     };
 
     const onDirectionClick = () => {
@@ -145,7 +150,7 @@ export default function Home() {
         backgroundPositionY: `${positionY}cqw`,
         backgroundRepeat: backgroundRepeatEnabled ? 'repeat' : 'no-repeat',
         backgroundImage: gradient,
-        mask: `url(${noise}), radial-gradient(rgba(0,0,0,1), rgba(0,0,0,0.2))`,
+        mask: enableDither ? `url(${noise}), radial-gradient(rgba(0,0,0,1), rgba(0,0,0,0.2))` : 'none',
         width: '60cqw',
         height: '60cqw',
         opacity: opacity
@@ -218,16 +223,30 @@ export default function Home() {
                         </div>
                         <div className={'flex flex-col gap-2'}>
                             <div style={gradientStyle}/>
-                            <div className={'flex items-center justify-end space-x-2'}>
-                                <Checkbox id={'terms1'} className={'size-6'} checked={backgroundRepeatEnabled}
-                                    onCheckedChange={onCheckedChange}/>
-                                <div className={'grid gap-1.5 leading-none'}>
-                                    <label
-                                        htmlFor={'terms1'}
-                                        className={'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'}
-                                    >
-                                        {'Background repeat'}
-                                    </label>
+                            <div className={'flex items-center justify-end gap-4'}>
+                                <div className={'flex items-center justify-end space-x-2'}>
+                                    <Checkbox id={'terms1'} className={'size-6'} checked={backgroundRepeatEnabled}
+                                        onCheckedChange={onCheckedChange}/>
+                                    <div className={'grid gap-1.5 leading-none'}>
+                                        <label
+                                            htmlFor={'terms1'}
+                                            className={'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'}
+                                        >
+                                            {'Background repeat'}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className={'flex items-center justify-end space-x-2'}>
+                                    <Checkbox id={'terms1'} className={'size-6'} checked={enableDither}
+                                        onCheckedChange={onEnableDitherChange}/>
+                                    <div className={'grid gap-1.5 leading-none'}>
+                                        <label
+                                            htmlFor={'terms1'}
+                                            className={'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'}
+                                        >
+                                            {'Enable dither'}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
