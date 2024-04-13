@@ -6,7 +6,7 @@ import { CheckedState } from '@radix-ui/react-checkbox';
 import { MoveRight } from 'lucide-react';
 
 import { ColorPicker } from '@/components/ColorPicker/ColorPicker';
-import { GradientSlider } from '@/components/GradientSlider/GradientSlider';
+import { Slider } from '@/components/Slider/Slider';
 import { SourceCodePreview } from '@/components/SourceCodePreview/SourceCodePreview';
 import { Checkbox } from '@/components/ui/checkbox';
 import styles from '@/styles/Index.module.scss';
@@ -174,7 +174,7 @@ export default function Home() {
                                     onClick={onDirectionClick}/>
                                 <ColorPicker color={stopColor} setColor={setStopColor}/>
                             </div>
-                            <GradientSlider
+                            <Slider
                                 title={`Standard deviation: ${stdDev}`}
                                 min={stdDevMin}
                                 max={stdDevMax}
@@ -182,7 +182,7 @@ export default function Home() {
                                 step={0.01}
                                 onValueChange={setStdDev}
                                 onReset={() => setStdDev(0.2)}/>
-                            <GradientSlider
+                            <Slider
                                 title={`Mean: ${mean}`}
                                 min={-2}
                                 max={10}
@@ -190,7 +190,7 @@ export default function Home() {
                                 defaultValue={0}
                                 onValueChange={setMean}
                                 onReset={() => setMean(0)}/>
-                            <GradientSlider
+                            <Slider
                                 title={`Stops: ${stops}`}
                                 min={1}
                                 max={200}
@@ -198,7 +198,7 @@ export default function Home() {
                                 defaultValue={50}
                                 onValueChange={setStops}
                                 onReset={() => setStops(50)}/>
-                            <GradientSlider
+                            <Slider
                                 title={`Position X: ${positionX}cqw`}
                                 min={-100}
                                 max={100}
@@ -206,7 +206,7 @@ export default function Home() {
                                 defaultValue={0}
                                 onValueChange={setPositionX}
                                 onReset={() => setPositionX(0)}/>
-                            <GradientSlider
+                            <Slider
                                 title={`Position Y: ${positionY}cqw`}
                                 min={-100}
                                 max={100}
@@ -214,7 +214,7 @@ export default function Home() {
                                 defaultValue={0}
                                 onValueChange={setPositionY}
                                 onReset={() => setPositionY(0)}/>
-                            <GradientSlider
+                            <Slider
                                 title={`Opacity: ${opacity}`}
                                 min={0}
                                 max={1}

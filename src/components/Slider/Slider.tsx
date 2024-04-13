@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
+import { Slider as BaseSlider } from '@/components/ui/slider';
 
-type GradientSliderProps = {
+type SliderProps = {
     title: string;
     min: number;
     max: number;
@@ -13,7 +13,7 @@ type GradientSliderProps = {
     onReset: () => void;
 };
 
-export const GradientSlider = (props: GradientSliderProps) => {
+export const Slider = (props: SliderProps) => {
 
     const { title, min, max, step, defaultValue, onValueChange, onReset } = props;
 
@@ -26,7 +26,7 @@ export const GradientSlider = (props: GradientSliderProps) => {
         </div>
         <div className={'flex items-center gap-3 py-3 pr-3'}>
             <div className={'font-mono'}>{min}</div>
-            <Slider defaultValue={[defaultValue]} min={min} max={max} step={step}
+            <BaseSlider defaultValue={[defaultValue]} min={min} max={max} step={step}
                 onValueChange={values => onValueChange(values[0])}
                 className={'w-full'}/>
             <div className={'font-mono'}>{max}</div>
