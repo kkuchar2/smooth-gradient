@@ -98,7 +98,7 @@ export function ColorPicker(props: GradientPickerProps) {
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
             <PopoverTrigger asChild>
                 <Button
-                    className={'h-[55px] bg-white/5 w-[140px] p-3 text-white hover:bg-white/10 border border-white/10 rounded-md ' + className}>
+                    className={'h-[50px] bg-white/5 min-w-[140px] max-w-[140px] p-3 text-white hover:bg-white/10 rounded-md ' + className}>
                     <div className={'flex w-full items-center gap-3'}>
                         {color ? (
                             <div

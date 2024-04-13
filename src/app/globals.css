@@ -36,7 +36,7 @@
     }
 
     .dark {
-        --background: #14151A;
+        --background: #1a1a1a;
         --foreground: hsl(210, 40%, 98%);
 
         --card: hsl(222.2, 84%, 4.9%);
@@ -48,7 +48,7 @@
         --primary: hsl(210, 40%, 98%);
         --primary-foreground: hsl(222.2, 47.4%, 11.2%);
 
-        --secondary: hsl(217.2, 32.6%, 17.5%);
+        --secondary: hsla(0, 0%, 78%, 0.12);
         --secondary-foreground: hsl(210, 40%, 98%);
 
         --muted: hsl(217.2, 32.6%, 17.5%);
