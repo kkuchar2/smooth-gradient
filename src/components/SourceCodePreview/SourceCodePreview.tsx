@@ -17,7 +17,7 @@ export const SourceCodePreview = (props: SourceCodePreviewProps) => {
             maxHeight: '100%',
             margin: 0,
             fontSize: '15px',
-            background: '#21232b',
+            background: '#1f1f1f',
             borderRadius: '20px',
             padding: '30px',
             boxSizing: 'border-box',
