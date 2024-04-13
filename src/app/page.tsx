@@ -7,6 +7,7 @@ import { MoveRight } from 'lucide-react';
 
 import { ColorPicker } from '@/components/ColorPicker/ColorPicker';
 import { GradientSlider } from '@/components/GradientSlider/GradientSlider';
+import { SourceCodePreview } from '@/components/SourceCodePreview/SourceCodePreview';
 import { Checkbox } from '@/components/ui/checkbox';
 import styles from '@/styles/Index.module.scss';
 
@@ -162,7 +163,8 @@ export default function Home() {
         <main className={'flex min-h-screen flex-col items-center justify-between p-24'}>
 
             <div className={styles.container}>
-                <div className={'m-3 text-center font-mono text-2xl tracking-tight'}>{'Smooth gradient generator'}</div>
+                <div
+                    className={'m-3 text-center font-mono text-2xl tracking-tight'}>{'Gaussian gradient generator'}</div>
                 <div className={'flex flex-col p-8'}>
                     <div className={'flex gap-6'}>
                         <div className={'flex w-[350px] flex-col'}>
@@ -254,7 +256,7 @@ export default function Home() {
                 </div>
                 <div
                     className={'w-full max-w-full overflow-y-auto border-none bg-none p-5 text-sm tracking-tighter text-white shadow-none'}>
-                    {styleasStr}
+                    <SourceCodePreview sourceCode={styleasStr}/>
                 </div>
             </div>
         </main>
