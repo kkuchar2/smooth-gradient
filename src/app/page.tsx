@@ -161,7 +161,6 @@ export default function Home() {
     const [stdDev, setStdDev] = React.useState(0.2);
     const [mean, setMean] = React.useState(0);
     const [stops, setStops] = React.useState(35);
-    const [backgroundRepeatEnabled, setBackgroundRepeatEnabled] = React.useState(true);
     const [direction, setDirection] = React.useState('to right');
     const [opacity, setOpacity] = React.useState(0.6);
     const [enableDither, setEnableDither] = React.useState(true);
@@ -185,7 +184,6 @@ export default function Home() {
 
     const gradientStyle = {
         position: 'relative',
-        backgroundRepeat: backgroundRepeatEnabled ? 'repeat' : 'no-repeat',
         backgroundImage: gradient,
         mask: enableDither ? `url(${defaultNoise}), ${gradient2}` : 'none',
         width: '60cqw',
