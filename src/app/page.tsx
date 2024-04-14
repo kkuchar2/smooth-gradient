@@ -183,7 +183,6 @@ export default function Home() {
     };
 
     const gradientStyle = {
-        position: 'relative',
         backgroundImage: gradient,
         mask: enableDither ? `url(${defaultNoise}), ${gradient2}` : 'none',
         width: '60cqw',
