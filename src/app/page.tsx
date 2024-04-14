@@ -172,10 +172,6 @@ export default function Home() {
     const [gradient] = generateGradient(startColor, stopColor, stops, mean, stdDev);
     const [gradient2] = generateGradient2(maskStops, maskMean, maskStdDev);
 
-    const onCheckedChange = (checked: CheckedState) => {
-        setBackgroundRepeatEnabled(typeof checked === 'boolean' ? checked : false);
-    };
-
     const onEnableDitherChange = (checked: CheckedState) => {
         setEnableDither(typeof checked === 'boolean' ? checked : false);
     };
