@@ -1,21 +1,5 @@
 @use "sass:math";
 
-.indexPage {
-  display: grid;
-  position: relative;
-  width: 100%;
-}
-
-.container {
-  container-name: mycontainer;
-  container-type: inline-size;
-  width: 1200px;
-
-  @media (max-width: 1200px) {
-    width: 100%;
-  }
-}
-
 //////////////////////////////////////////////////////////////////////
 
 // Generating nice gradients with Gaussian distribution

@@ -98,11 +98,11 @@ export function ColorPicker(props: GradientPickerProps) {
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
             <PopoverTrigger asChild>
                 <Button
-                    className={'h-[50px] bg-white/5 min-w-[140px] max-w-[140px] p-3 text-white hover:bg-white/10 rounded-md ' + className}>
-                    <div className={'flex w-full items-center gap-3'}>
+                    className={'h-[40px] bg-white/5 min-w-[120px] max-w-[120px] p-3 text-white hover:bg-white/10 rounded-md ' + className}>
+                    <div className={'flex w-full items-center'}>
                         {color ? (
                             <div
-                                className={'size-10 rounded-full !bg-cover !bg-center'}
+                                className={'size-7 rounded-full !bg-cover !bg-center'}
                                 style={{
                                     background: localColor,
                                     transition: 'border-color 0.2s',
@@ -112,7 +112,7 @@ export function ColorPicker(props: GradientPickerProps) {
                         ) : (
                             <Paintbrush className={'size-5'}/>
                         )}
-                        <div className={'flex-1 truncate'}>{color ? localColor : 'Pick a color'}</div>
+                        <div className={'flex-1 truncate text-[0.9em]'}>{color ? localColor : 'Pick a color'}</div>
                     </div>
                 </Button>
             </PopoverTrigger>
