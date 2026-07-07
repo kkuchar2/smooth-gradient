@@ -1,25 +1,54 @@
-import React from 'react';
+import type { Metadata } from 'next'
+import { JetBrains_Mono } from 'next/font/google'
+import type { ReactNode } from 'react'
 
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import './globals.css'
 
-import './globals.css';
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+  weight: ['400', '500'],
+})
 
-const inter = Inter({ subsets: ['latin'] });
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3003'
 
 export const metadata: Metadata = {
+  title: 'Gaussian Gradient Generator',
+  description:
+    'Generate smooth Gaussian gradients with customizable distribution, dithering, and CSS export',
+  metadataBase: new URL(siteUrl),
+  applicationName: 'Gaussian Gradient Generator',
+  manifest: '/site.webmanifest',
+  openGraph: {
     title: 'Gaussian Gradient Generator',
-    description: 'A simple tool to generate radial gradients with Gaussian distribution.',
-};
+    description:
+      'Generate smooth Gaussian gradients with customizable distribution, dithering, and CSS export',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Smooth Gaussian gradient preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gaussian Gradient Generator',
+    description:
+      'Generate smooth Gaussian gradients with customizable distribution, dithering, and CSS export',
+    images: ['/og-image.png'],
+  },
+}
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
-    return (
-        <html lang={'en'} className={'dark'}>
-            <body className={inter.className}>{children}</body>
-        </html>
-    );
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={jetbrains.variable} suppressHydrationWarning>
+        {children}
+        <div id="modal-root" />
+      </body>
+    </html>
+  )
 }

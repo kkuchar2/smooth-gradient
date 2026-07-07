@@ -1,0 +1,37 @@
+/* Gruvbox Dark — custom Starry Night theme (https://github.com/morhetz/gruvbox) */
+
+.sourceCodeTheme {
+  --color-prettylights-syntax-brackethighlighter-angle: #a89984;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #fb4934;
+  --color-prettylights-syntax-carriage-return-bg: #cc241d;
+  --color-prettylights-syntax-carriage-return-text: #1d2021;
+  --color-prettylights-syntax-comment: #928374;
+  --color-prettylights-syntax-constant: #d3869b;
+  --color-prettylights-syntax-constant-other-reference-link: #83a598;
+  --color-prettylights-syntax-entity: #83a598;
+  --color-prettylights-syntax-entity-tag: #8ec07c;
+  --color-prettylights-syntax-invalid-illegal-bg: #fb4934;
+  --color-prettylights-syntax-invalid-illegal-text: #1d2021;
+  --color-prettylights-syntax-keyword: #fb4934;
+  --color-prettylights-syntax-markup-bold: #ebdbb2;
+  --color-prettylights-syntax-markup-changed-bg: #504945;
+  --color-prettylights-syntax-markup-changed-text: #fabd2f;
+  --color-prettylights-syntax-markup-deleted-bg: #cc241d;
+  --color-prettylights-syntax-markup-deleted-text: #fb4934;
+  --color-prettylights-syntax-markup-heading: #fe8019;
+  --color-prettylights-syntax-markup-ignored-bg: #3c3836;
+  --color-prettylights-syntax-markup-ignored-text: #a89984;
+  --color-prettylights-syntax-markup-inserted-bg: #458588;
+  --color-prettylights-syntax-markup-inserted-text: #b8bb26;
+  --color-prettylights-syntax-markup-italic: #ebdbb2;
+  --color-prettylights-syntax-markup-list: #fabd2f;
+  --color-prettylights-syntax-meta-diff-range: #d3869b;
+  --color-prettylights-syntax-storage-modifier-import: #ebdbb2;
+  --color-prettylights-syntax-string: #b8bb26;
+  --color-prettylights-syntax-string-regexp: #8ec07c;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #665c54;
+  --color-prettylights-syntax-variable: #fabd2f;
+
+  background: #282828;
+  color: #ebdbb2;
+}

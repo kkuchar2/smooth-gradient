@@ -1,0 +1,6 @@
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true
+peerDependencyRules:
+  allowedVersions:
+    eslint: '10'
