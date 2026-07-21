@@ -24,28 +24,28 @@
   "dependencies": {
     "@wooorm/starry-night": "^3.10.0",
     "hast-util-to-jsx-runtime": "^2.3.6",
-    "lucide-react": "^0.575.0",
-    "next": "16.2.10",
-    "react": "^19.2.7",
-    "react-colorful": "^5.6.1",
-    "react-dom": "^19.2.7"
+    "lucide-react": "^1.25.0",
+    "next": "16.2.11",
+    "react": "^19.2.8",
+    "react-colorful": "^5.8.0",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "^5.11.2",
+    "@eslint-react/eslint-plugin": "^5.17.3",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-tailwindcss": "4.0.6",
+    "eslint-plugin-tailwindcss": "4.2.0",
     "playwright": "^1.61.1",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.6",
     "tailwindcss": "^4",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.63.0"
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.65.0"
   },
-  "packageManager": "pnpm@11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b"
+  "packageManager": "pnpm@11.15.1"
 }
